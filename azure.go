@@ -12,8 +12,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/go-kit/log/level"
+
 	"github.com/percona/azure_metrics_exporter/config"
-	"github.com/prometheus/common/log"
 )
 
 var (
@@ -142,7 +143,7 @@ func latestVersionFrom(apiList []string) string {
 		dateStr := apiVersionDate.FindString(api)
 		date, err := time.Parse(format, dateStr)
 		if err != nil {
-			log.Errorln(err)
+			level.Error(logger).Log("error", err)
 			continue
 		}
 
@@ -200,7 +201,7 @@ func (ac *AzureClient) getAccessToken() error {
 	var resp *http.Response
 	var err error
 	if len(sc.C.Credentials.ClientID) == 0 {
-		log.Infoln("Using managed identity")
+		level.Info(logger).Log("msg", "Using managed identity")
 		target := fmt.Sprintf("http://169.254.169.254/metadata/identity/oauth2/token?resource=%s&api-version=2018-02-01", sc.C.ResourceManagerURL)
 		req, err := http.NewRequest("GET", target, nil)
 		if err != nil {
