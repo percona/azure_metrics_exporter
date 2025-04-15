@@ -8,8 +8,6 @@ import (
 	"regexp"
 	"strings"
 	"time"
-
-	"github.com/go-kit/log/level"
 )
 
 var (
@@ -27,7 +25,7 @@ var (
 func PrintPrettyJSON(input map[string]interface{}) {
 	out, err := json.MarshalIndent(input, "", "\t")
 	if err != nil {
-		level.Error(logger).Log("msg", "Error indenting JSON", "error", err)
+		logger.Error("Error indenting JSON", "error", err)
 		os.Exit(1)
 	}
 	fmt.Println(string(out))
