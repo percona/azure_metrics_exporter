@@ -265,7 +265,7 @@ func (c *Collector) Collect(ch chan<- prometheus.Metric) {
 		filteredResources, err := ac.filteredListFromResourceGroup(resourceGroup)
 		if err != nil {
 			logger.Error("Failed to get resources for resource group %s and resource types %s: %v",
-				resourceGroup.ResourceGroup, resourceGroup.ResourceTypes, err)
+				resourceGroup.ResourceGroup, resourceGroup.ResourceTypes, "error", err)
 			ch <- prometheus.NewInvalidMetric(azureErrorDesc, err)
 			return
 		}
@@ -293,7 +293,7 @@ func (c *Collector) Collect(ch chan<- prometheus.Metric) {
 		filteredResources, err := ac.filteredListByTag(resourceTag, resourcesCache)
 		if err != nil {
 			logger.Error("Failed to get resources for tag name %s, tag value %s: %v",
-				resourceTag.ResourceTagName, resourceTag.ResourceTagValue, err)
+				resourceTag.ResourceTagName, resourceTag.ResourceTagValue, "error", err)
 			ch <- prometheus.NewInvalidMetric(azureErrorDesc, err)
 			return
 		}
@@ -311,7 +311,7 @@ func (c *Collector) Collect(ch chan<- prometheus.Metric) {
 
 	completeResources, err := c.batchLookupResources(incompleteResources)
 	if err != nil {
-		logger.Error("Failed to get resource info: %s", err)
+		logger.Error("Failed to get resource info: %s", "error", err)
 		ch <- prometheus.NewInvalidMetric(azureErrorDesc, err)
 		return
 	}

@@ -5,7 +5,7 @@ go 1.24.9
 require (
 	github.com/alecthomas/kingpin/v2 v2.4.0
 	github.com/prometheus/client_golang v1.22.0
-	github.com/prometheus/common v0.63.0
+	github.com/prometheus/common v0.67.2
 	gopkg.in/yaml.v2 v2.4.0
 )
 
@@ -18,6 +18,7 @@ require (
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/procfs v0.16.0 // indirect
 	github.com/xhit/go-str2duration/v2 v2.1.0 // indirect
-	golang.org/x/sys v0.32.0 // indirect
-	google.golang.org/protobuf v1.36.6 // indirect
+	go.yaml.in/yaml/v2 v2.4.3 // indirect
+	golang.org/x/sys v0.37.0 // indirect
+	google.golang.org/protobuf v1.36.10 // indirect
 )
