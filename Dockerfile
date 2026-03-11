@@ -1,6 +1,9 @@
-FROM golang:1.11 as builder
+FROM golang:1.25 AS builder
+
 WORKDIR /go/src/github.com/percona/azure_metrics_exporter
+
 COPY . .
+
 RUN make build
 
 FROM quay.io/prometheus/busybox:latest AS app

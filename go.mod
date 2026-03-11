@@ -1,6 +1,6 @@
 module github.com/percona/azure_metrics_exporter
 
-go 1.25.5
+go 1.25.8
 
 require (
 	github.com/alecthomas/kingpin/v2 v2.4.0
