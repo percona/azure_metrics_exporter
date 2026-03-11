@@ -26,9 +26,6 @@ jobs:
         with:
           go-version-file: ${{ github.workspace }}/go.mod
 
-      - name: Install promu
-        run: go install github.com/prometheus/promu@latest
-
       - name: Build
         run: make build
 
